@@ -1,6 +1,9 @@
 # SNAPpy
 This project allows users to input a shopping list, and finds grocery stores near by that not only carry the stock, but also accept SNAP benefits.
 
+APIs:
+- https://github.com/subfuzion/snapfinder-lib/wiki
+- https://developers.google.com/maps/documentation/places/web-service/search
 
 Workflow:
 1. Enter grocery list.
