@@ -15,3 +15,7 @@ Workflow:
 7. Filter by product availability.
 8. Generate optimal shopping trip.
 9. Publish results to frontend.
+
+
+TODO:
+- Add Spanish/other lanugage capability
