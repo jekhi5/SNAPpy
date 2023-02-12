@@ -36,14 +36,24 @@ let sendList = () => {
 
     const address = "{% url 'shoppinglist/' %}"
     let slist = new URLSearchParams();
-    slist.append('shoppingList', items);
+    slist.append('shoppingList', items.values());
     
-    $.ajax({  
-        type: "POST",
-        url: address,
-        data: JSON.stringify(items),
-        contentType: "application/json"
-       });
+    var settings = {
+        "url": "",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "data": {
+          "shoppingList": JSON.stringify(slist)
+        }
+      };
+      
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+      });
+
 
     // $.post(address, data, (stuff, status) => {alert("Data: " + stuff + "\nStatus: " + status);}, "json");
 }
