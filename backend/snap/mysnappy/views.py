@@ -39,8 +39,6 @@ def shoppinglist(request):
     # POST: take in the shopping list. Query the recipe api for recipes.
     # Send recipes back to the requester.
     elif request.method == "POST":
-        return HttpResponse(request.POST['shoppingList'])
-
         sl = request.POST['shoppingList']
         ing1 = choice(sl)
         ing2 = choice(sl)
@@ -53,8 +51,9 @@ def shoppinglist(request):
 
         result = e.search_recipe(ing1 + ' ' + ing2 + ' ' + ing3)
 
+        print(result)
         if result['count'] > 0:
-            out = choice(result['hits'])
+            out = result['hits'][0]
 
             data = {
                 'hits': result['count'],
