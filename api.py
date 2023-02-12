@@ -1,12 +1,13 @@
 import requests
 import json
+import os
 
 nearby_base = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" 
 latitude = "42.338110"
 longitude = "-71.094780"
 radius = "1000"
 establishment_type = "supermarket"
-key = "AIzaSyDJXEgMu_CW7bsxUYfrTMHRqXmdhv4MUdw"
+key = os.environ['GOOGLE_KEY']
 
 nearby_url = f'{nearby_base}{latitude}%2C{longitude}&radius={radius}&type={establishment_type}&key={key}'
 
