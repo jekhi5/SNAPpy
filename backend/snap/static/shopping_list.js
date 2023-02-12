@@ -35,18 +35,17 @@ let sendList = () => {
     const items = summarize_list();
 
     const address = "{% url 'shoppinglist/' %}"
-    let slist = new URLSearchParams();
-    slist.append('shoppingList', items.values());
     
+
     var settings = {
         "url": "",
         "method": "POST",
-        "timeout": 0,
+        "timeout": -1,
         "headers": {
           "Content-Type": "application/x-www-form-urlencoded"
         },
         "data": {
-          "shoppingList": JSON.stringify(slist)
+          "shoppingList": JSON.stringify(items)
         }
       };
       
