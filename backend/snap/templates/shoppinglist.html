@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>
-      SNAPpy - The SNAP Hub 
+      SNAPpy - Recipe builder
     </title>
     <style>
         body {
@@ -21,6 +21,7 @@
   </head>
 
   <body>
+    <!-- Add this div to top!-->
     <div id="topnav-container">
         <ul id="topnav">
             <li class="nav-item"><a href="{% url 'landing' %}">Home</a></li>
@@ -29,36 +30,38 @@
         </ul>
     </div>
 
-
-    <h1>Welcome to SNAPpy</h1>
+    <div id="input-content">
+    <h1>Build a Recipe</h1>
 
     <h3>Instructions</h3>
-    <br>
-    <div class="content-box">
-        <p> Write down your shopping list, one item at a time. We will try to generate some recipes you can make with just those ingredients, or possibly a few more. </p>
-        <p> These recipes are intended to be quick, inexpensive, and easy to prepare. Good food doesn't need expensive ingredients and hours of labor. So come out of your comfort zone and cook a meal! </p>
-    </div>
-    <br>
-    <h3>Input Shopping List</h3>
-    <br>
-    <div id="list-container">
-      <div id="new-item">
-        <input id="new-item-name" type="text" placeholder="Enter new item..."></input>
-        <button id="add-item-button" onclick="addItem()">Add</button>
-      </div>
-      <br>
-      <div id="list-items">
-        <ul id="shopping-list">
-        </ul>
-      </div>
-    </div>
-    <br>
-    <button id="submit" onclick="sendList()">Find Stores</button>:
-    <br>
-    <br>
-    <br>
-    <div id="results">
+        <div class="content-box">
+            <p> Eneter your shopping list, one item at a time. We will try to generate some recipes you can make with just those ingredients, or possibly a few more. </p>
+            <p> These recipes are intended to be quick, inexpensive, and easy to prepare. Good food doesn't need expensive ingredients and hours of labor. So come out of your comfort zone and cook a meal! </p>
+        </div>
+        <br>
+        <h3>Input Shopping List</h3>
+        <div class="content-box">
+            <br>
+            <div id="list-container">
+            <div id="new-item">
+                <input id="new-item-name" type="text" placeholder="Enter new item..."></input>
+                <button id="add-item-button" onclick="addItem()">Add</button>
+            </div>
+            <br>
+            <div id="list-items">
+                <ul id="shopping-list">
+                </ul>
+            </div>
+            </div>
+            <br>
+            <button id="submit" onclick="sendList()">Find Recipes</button>
+            <br>
+        </div>
+        <br>
+        <br>
+        <div id="results">
 
+        </div>
     </div>
   </body>
 </html>
