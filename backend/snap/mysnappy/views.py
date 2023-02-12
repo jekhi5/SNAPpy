@@ -3,18 +3,23 @@ from django.http import HttpResponse
 
 # TODO: implement spell-checking!
 
+
 def landing(request):
     return render(request, "landing.html")
+
 
 def map(request):
     if request.method == "GET":
         return render(request, "map.html")
     elif request.method == "POST":
-        return HttpResponse(request.POST["map"])
+        result = location_pipeline(
+            request.POST["zipcode"], request.POST["radius"])
+        return HttpResponse(result)
+
 
 def shoppinglist(request):
     if request.method == "GET":
-        #print("GET")
+        # print("GET")
         return render(request, "shoppinglist.html")
     elif request.method == "POST":
         print("POST")
