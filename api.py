@@ -7,7 +7,7 @@ latitude = "42.338110"
 longitude = "-71.094780"
 radius = "1000"
 establishment_type = "supermarket"
-key = os.environ['GOOGLE_KEY']
+key = os.getenv('GOOGLE_KEY')
 
 nearby_url = f'{nearby_base}{latitude}%2C{longitude}&radius={radius}&type={establishment_type}&key={key}'
 

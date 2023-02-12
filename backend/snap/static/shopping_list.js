@@ -1,7 +1,7 @@
 // add a new item to the list
 let addItem = () => {
     // re-enable the submit button if it has been disabled
-    document.getElementById('submit').onclick = "sendList()";
+    //document.getElementById('submit').onclick = "sendList()";
 
     const inputBox = document.getElementById("new-item-name");
     const itemName = inputBox.value;
@@ -9,7 +9,7 @@ let addItem = () => {
     const shoppingList = document.getElementById("shopping-list");
     let newItem = document.createElement("li");
     newItem.appendChild(document.createTextNode(itemName));
-shoppingList.appendChild(newItem);
+    shoppingList.appendChild(newItem);
 }
 
 // return an array of all the item names in the list
@@ -18,11 +18,11 @@ let summarize_list = () => {
 
     output = [];
 
-    // childNodes needs to be shifted because of the TextNode.
     for (let li of shoppingList.childNodes.values()) {
         output.push(li.innerHTML)
     }
 
+    // output needs to be shifted because of the initial TextNode.
     output.shift()
     return output;
 }
@@ -32,8 +32,10 @@ let sendList = () => {
     // disable the button until the list is altered.
     //document.getElementById('submit').onclick = "";
 
-  const items = summarize_list();
+    // Get the current shopping list
+    const items = summarize_list();
 
+    // Build the POST request
     var settings = {
         "url": "",
         "method": "POST",
@@ -46,6 +48,8 @@ let sendList = () => {
         }
       };
       
+      // Send the POST request to the server.
+      // The callback function should replace the current page with the map.
       $.ajax(settings).done(function (response) {
         console.log(response);
       });
