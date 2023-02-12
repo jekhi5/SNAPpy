@@ -51,7 +51,6 @@ def shoppinglist(request):
 
         result = e.search_recipe(ing1 + ' ' + ing2 + ' ' + ing3)
 
-        print(result)
         if result['count'] > 0:
             out = result['hits'][0]
 

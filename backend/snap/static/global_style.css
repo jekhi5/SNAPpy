@@ -90,25 +90,32 @@ h3 {
 .data {
     font-size: 12px;
     display: inline-block;
+    padding: 0px;
+
 }
 
-.result_container {
+.supermarket_box {
     border: 2px solid #BB2400;
+    margin: auto;
     border-radius: 10px;
-    padding: 10px; 
+    margin-bottom: 30px; 
     background-color: #D6E4E5;
+    vertical-align: middle;
+    max-width: fit-content;
+    min-height: 150px;
 }
 
 .data_container {
-    width: 200px;
-    height: 60px;
+    width: 170px;
+    max-height: 60px;
     display: inline-block;
-    background-color: #EFF5F5; 
+    vertical-align: middle;
+    top: 5px;
 }
 
 .icon_container {
     width: 100px;
-    height: 60px;
+    max-height: 60px;
     display: inline-block;
-    background-color: #EFF5F5;
+    top: 15px;
 }

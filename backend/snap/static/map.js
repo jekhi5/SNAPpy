@@ -64,7 +64,6 @@ let sendLocation = () => {
         }, this);
 
         mapped.forEach(function (elem, i, arr) {
-            console.log(elem)
             const obj = elem.supermarket_object;
             obj.toHTML(supermarket_list_div);
         }, this);
@@ -107,16 +106,6 @@ class Supermarket {
         address_text.setAttribute("href", this.googleURL);
         address_text.innerHTML = this.address;
 
-        const storeURL_para = document.createElement("p");
-        storeURL_para.setAttribute("class", "data");
-        const storeURL_text = document.createTextNode(this.storeURL);
-        storeURL_para.appendChild(storeURL_text);
-
-        const googleURL_para = document.createElement("p");
-        googleURL_para.setAttribute("class", "data");
-        const googleURL_text = document.createTextNode(this.googleURL);
-        googleURL_para.appendChild(googleURL_text);
-
         const phone_para = document.createElement("p");
         phone_para.setAttribute("class", "data");
         const phone_text = document.createTextNode(this.phone);
@@ -124,8 +113,8 @@ class Supermarket {
 
         const hours_para = document.createElement("p");
         hours_para.setAttribute("class", "data");
-        const opening_hours = this.hours[0].substring(0, 2) + ":" + this.hours[0].substring(2);
-        const closing_hours = this.hours[1].substring(0, 2) + ":" + this.hours[1].substring(2);
+        const opening_hours = "Today's Opening Hours: " + this.hours[0].substring(0, 2) + ":" + this.hours[0].substring(2);
+        const closing_hours = "Today's Closing Hours: " + this.hours[1].substring(0, 2) + ":" + this.hours[1].substring(2);
         const hours_text = document.createTextNode(opening_hours + " - " + closing_hours);
         hours_para.appendChild(hours_text);
 
@@ -134,8 +123,6 @@ class Supermarket {
         data_container.setAttribute("class", "data_container");
         data_container.appendChild(name_text);
         data_container.appendChild(address_text);
-        data_container.appendChild(storeURL_para);
-        data_container.appendChild(googleURL_para);
         data_container.appendChild(phone_para);
         data_container.appendChild(hours_para);
 
@@ -145,26 +132,43 @@ class Supermarket {
         const is_wheelchair_accessible_emoji = document.createTextNode(WHEELCHAIR_EMOJI);
         is_wheelchair_accessible_para.setAttribute("class", "icon");
         is_wheelchair_accessible_para.appendChild(is_wheelchair_accessible_emoji);
-        parent.appendChild(is_wheelchair_accessible_para);
+
+       
+        
 
         const has_delivery_para = document.createElement("p");
         const has_delivery_emoji = document.createTextNode(DELIVERY_VEHICLE);
         has_delivery_para.setAttribute("class", "icon");
         has_delivery_para.appendChild(has_delivery_emoji);
-        parent.appendChild(has_delivery_para);
+
+      
+
 
         const has_curbside_pickup_para = document.createElement("p");
         const has_curbside_pickup_emoji = document.createTextNode(CURBSIDE_PICKUP_PERON);
         has_curbside_pickup_para.setAttribute("class", "icon");
         has_curbside_pickup_para.appendChild(has_curbside_pickup_emoji);
-        parent.appendChild(has_curbside_pickup_para);
+        
+        
+        
 
 
         const icon_container = document.createElement("div");
         icon_container.setAttribute("class", "icon_container");
-        icon_container.appendChild(is_wheelchair_accessible_para);
-        icon_container.appendChild(has_delivery_para);
-        icon_container.appendChild(has_curbside_pickup_para);
+        
+         if (this.is_wheelchair_accessible) {
+             parent.appendChild(is_wheelchair_accessible_para);
+             icon_container.appendChild(is_wheelchair_accessible_para);
+        }
+          if (this.has_delivery) {
+            parent.appendChild(has_delivery_para);  
+            icon_container.appendChild(has_delivery_para);
+        }
+        if (this.has_curbside_pickup) {
+            parent.appendChild(has_curbside_pickup_para);
+            icon_container.appendChild(has_curbside_pickup_para);
+        }
+        
 
         
         
