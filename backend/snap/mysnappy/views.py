@@ -1,10 +1,13 @@
+import re
 import geocoder
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from .store_locating_pipeline import *
 import os
 import json
 from dotenv import load_dotenv, find_dotenv
+from py_edamam import Edamam
+from random import choice
 
 load_dotenv(find_dotenv())
 
@@ -40,12 +43,40 @@ def shoppinglist(request):
     elif request.method == "POST":
         return HttpResponse(request.POST['shoppingList'])
 
-        # build message payload
-        payload = {
-            'app_id': config('RECIPE_ID'),
-            'app_key': congig('RECIPE_KEY'),
-            'q': ingredients_query
-        }
+        sl = request.POST['shoppingList']
+        ing1 = choice(sl)
+        ing2 = choice(sl)
+        ing3 = choice(sl)
+
+        e = Edamam(
+            recipes_appid= os.getenv('RECIPE_ID'),
+            recipes_appkey=os.getenv('RECIPE_KEY'),
+        )
+
+        
+        result = e.search_recipe(ing1 + ' ' + ing2 + ' ' + ing3)
+
+        if result['count'] > 0:
+            out = choice(result['hits'])
+
+            
+            data = {
+                'hits'  : result['count'],
+                'title' : out['recipe']['label'],
+                'url'   : out['recipe']['url']
+            }
+
+            return JsonResponse(data)
+
+        else:
+            out = {'hits' : 0}
+            return JsonResponse(out)
+
+        
+
+
+
+
 
 # Process the user given zipcode and radius through the following pipeline:
 # 1. Request Google Maps to give us all grocery stores in the given radius
@@ -79,7 +110,20 @@ def location_pipeline(user_address, radius_string):
     lat = coords[0]
     lng = coords[1]
 
+    print("Address: ", user_address)
+    print("Radius: ", radius_string)
+    print("Coords: (", lat, ", ", lng, ")")
+    print()
+
     list_of_supermarkets = get_supermarkets_in_area(lat, lng, radius)
+
+    print("Initial list (count = ", len(list_of_supermarkets), "): ")
+    for store in list_of_supermarkets:
+        for key in store:
+            print(key, " : ", store[key])
+        print()
+
+    print("--------------------")
 
     filtered_list = get_snap_stores(list_of_supermarkets)
 
