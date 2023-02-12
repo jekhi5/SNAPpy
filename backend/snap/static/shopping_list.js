@@ -32,10 +32,7 @@ let sendList = () => {
     // disable the button until the list is altered.
     //document.getElementById('submit').onclick = "";
 
-    const items = summarize_list();
-
-    const address = "{% url 'shoppinglist/' %}"
-    
+  const items = summarize_list();
 
     var settings = {
         "url": "",
@@ -52,7 +49,4 @@ let sendList = () => {
       $.ajax(settings).done(function (response) {
         console.log(response);
       });
-
-
-    // $.post(address, data, (stuff, status) => {alert("Data: " + stuff + "\nStatus: " + status);}, "json");
 }
