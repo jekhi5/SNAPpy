@@ -30,7 +30,7 @@ let summarize_list = () => {
 // sends the current shopping list 
 let sendList = () => {
     // disable the button until the list is altered.
-    document.getElementById('submit').onclick = "";
+    //document.getElementById('submit').onclick = "";
 
     const items = summarize_list();
 
