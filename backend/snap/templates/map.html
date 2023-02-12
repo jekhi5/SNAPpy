@@ -10,9 +10,20 @@
         <script async
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXEgMu_CW7bsxUYfrTMHRqXmdhv4MUdw&libraries=geometry,places&callback=initMap">
         </script>
+        <link rel="stylesheet" href="{% static 'global_style.css' %}" type="text/css" />
     </head>
     
     <body>
+        <div id="topnav-container">
+            <ul id="topnav">
+                <li class="nav-item"><a href="{% url 'landing' %}">Home</a></li>
+                <li class="nav-item"><a href="{% url 'map' %}">Locate Groceries</a></li>
+                <li class="nav-item"><a href="{% url 'shoppinglist' %}">Find Recipies</a></li>
+            </ul>
+        </div>
+
+        <br>
+        <h1>Locate SNAP Groceries</h1>
         <label for="address" id="address_label">Address:</label>
         <input type="text" id="address" name="address" value="500 Parker St., Boston, MA"><br><br>
         <label for="radius" id="radius_label">Radius (miles):</label>
