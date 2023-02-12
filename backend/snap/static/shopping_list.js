@@ -51,6 +51,23 @@ let sendList = () => {
       // Send the POST request to the server.
       // The callback function should replace the current page with the map.
       $.ajax(settings).done(function (response) {
+        const results = document.getElementById('results');
+        
         console.log(response);
+
+        if (response.hits > 0) {
+          const link = document.createElement('a');
+          link.setAttribute("href", response.url);
+          link.innerHTML = response.title;
+          results.appendChild(link);
+          
+        } else {
+          const resP = document.createElement('p');
+          resP.appendChild(document.createTextNode("No recipes found with your ingredients. Try adding more!"));
+          results.appendChild(resP);
+
+        }
+
+        results.appendChild(document.createElement('br'));
       });
 }
