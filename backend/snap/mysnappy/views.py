@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from .store_locating_pipeline import *
 import os
+import json
 from dotenv import load_dotenv, find_dotenv
 from py_edamam import Edamam
 from random import choice
@@ -26,7 +27,8 @@ def map(request):
         return render(request, "map.html")
     elif request.method == "POST":
         result = location_pipeline(
-            request.POST["zipcode"], request.POST["radius"])
+            request.POST["address"], request.POST["radius"])
+        print(result)
         return HttpResponse(result)
 
 
@@ -40,6 +42,7 @@ def shoppinglist(request):
     # POST: take in the shopping list. Query the recipe api for recipes.
     # Send recipes back to the requester.
     elif request.method == "POST":
+        return HttpResponse(request.POST['shoppingList'])
 
         sl = request.POST['shoppingList']
         ing1 = choice(sl)
@@ -82,11 +85,14 @@ def shoppinglist(request):
 # 3. Request Google Maps to give us accessibility and pricing information for the remaining grocery stores
 # NOTE: The user will pass in a radius in miles, however, we want to convert this to meters per the API
 def location_pipeline(user_address, radius_string):
+
     try:
+        user_address = ''.join(x for x in user_address if x != '"')
+        radius_string = ''.join(x for x in radius_string if x != '"')
         float(radius_string)
-    except:
+    except ValueError:
         # HANDLE ERROR
-        exit(1)
+        return json.dumps({"results": []})
 
     radius = int(radius_string) * 1609.344
 
@@ -98,45 +104,26 @@ def location_pipeline(user_address, radius_string):
 
     if (coords == None):
         # HANDLE ERROR
-        exit(1)
+        return json.dumps({"results": []})
 
     lat = coords[0]
     lng = coords[1]
 
-    # print("Address: ", user_address)
-    # print("Radius: ", radius_string)
-    # print("Coords: (", lat, ", ", lng, ")")
-    # print()
+    print("Address: ", user_address)
+    print("Radius: ", radius_string)
+    print("Coords: (", lat, ", ", lng, ")")
+    print()
 
     list_of_supermarkets = get_supermarkets_in_area(lat, lng, radius)
 
-    # print("Initial list (count = ", len(list_of_supermarkets), "): ")
-    # for store in list_of_supermarkets:
-    #     for key in store:
-    #         print(key, " : ", store[key])
-    #     print()
+    print("Initial list (count = ", len(list_of_supermarkets), "): ")
+    for store in list_of_supermarkets:
+        for key in store:
+            print(key, " : ", store[key])
+        print()
 
-    # print("--------------------")
+    print("--------------------")
 
     filtered_list = get_snap_stores(list_of_supermarkets)
 
-    # print("Filtered list (count = ", len(filtered_list), "): ")
-    # for store in filtered_list:
-    #     for key in store:
-    #         print(key, " : ", store[key])
-    #     print()
-
-    # print("--------------------")
-
-    resulting_stores = get_store_info(filtered_list)
-
-    # print("Resulting list (count = ", len(resulting_stores), "): ")
-    # for store in resulting_stores:
-    #     for key in store:
-    #         print(key, " : ", store[key])
-    #     print()
-
-    # print("--------------------")
-
-
-location_pipeline("500 Parker St.", 2)
+    return json.dumps({"results": get_store_info(filtered_list)})

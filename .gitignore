@@ -1,6 +1,5 @@
 *.swp
 *.env
 *.orig
-
 *.xml
 *.pyc
