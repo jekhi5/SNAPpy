@@ -1,19 +1,9 @@
-// Handle the keypress into the zipcode field
-$('.equipCatValidation').on('keyup keydown change', function(e){
-        if ($(this).val() > 9999 
-            && e.keyCode !== 46
-            && e.keyCode !== 8
-           ) {
-           e.preventDefault();     
-        }
-});
-    
 // sends the current shopping list 
 let sendLocation = () => {
     // disable the button until the list is altered.
     document.getElementById('submit').onclick = "";
 
-    const zipcode = document.getElementById("zcode");
+    const address = document.getElementById("address");
     const radius = document.getElementById("radius");
     
 
@@ -25,7 +15,7 @@ let sendLocation = () => {
             "Content-Type": "application/x-www-form-urlencoded"
         },
         "data": {
-            "zipcode": JSON.stringify(zipcode),
+            "zipcode": JSON.stringify(address),
             "radius": JSON.stringify(radius)
         }
     };
