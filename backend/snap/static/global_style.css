@@ -79,3 +79,15 @@ h3 {
 #submit {
     margin: 10px;
 }
+
+
+
+.icon {
+    display: inline-block;
+    max-height: 15px;
+    max-width: 15px;
+}
+
+.data {
+    font-size: 12;
+}
