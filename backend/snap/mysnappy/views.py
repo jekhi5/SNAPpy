@@ -41,6 +41,12 @@ def shoppinglist(request):
     elif request.method == "POST":
         return HttpResponse(request.POST['shoppingList'])
 
+        # build message payload
+        payload = {
+            'app_id'  : config('RECIPE_ID'),
+            'app_key' : congig('RECIPE_KEY'),
+            'q'       : ingredients_query
+        }
 
 # Process the user given zipcode and radius through the following pipeline:
 # 1. Request Google Maps to give us all grocery stores in the given radius
