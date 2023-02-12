@@ -39,7 +39,7 @@ let sendList = () => {
     var settings = {
         "url": "",
         "method": "POST",
-        "timeout": -1,
+        "timeout": 0,
         "headers": {
           "Content-Type": "application/x-www-form-urlencoded"
         },
