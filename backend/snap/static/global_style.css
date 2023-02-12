@@ -69,7 +69,7 @@ h3 {
 
 .new-item {
     background-color:#D6E4E5;
-    position: 
+    position:relative;
 }
 
 #shopping-list {
@@ -84,10 +84,31 @@ h3 {
 
 .icon {
     display: inline-block;
-    max-height: 15px;
-    max-width: 15px;
+    font-size: 25px;
 }
 
 .data {
-    font-size: 12;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.result_container {
+    border: 2px solid #BB2400;
+    border-radius: 10px;
+    padding: 10px; 
+    background-color: #D6E4E5;
+}
+
+.data_container {
+    width: 200px;
+    height: 60px;
+    display: inline-block;
+    background-color: #EFF5F5; 
+}
+
+.icon_container {
+    width: 100px;
+    height: 60px;
+    display: inline-block;
+    background-color: #EFF5F5;
 }
