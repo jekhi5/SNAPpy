@@ -77,7 +77,7 @@ def get_store_info(list_of_places):
     details_base = "https://maps.googleapis.com/maps/api/place/details/json?place_id="
 
     fields = "%2C".join(["formatted_phone_number", "url", "website",
-                        "wheelchair_accessible_entrance", "delivery", "curbside_pickup"])
+                        "wheelchair_accessible_entrance", "delivery", "curbside_pickup", "current_opening_hours"])
 
     result = list_of_places
 
@@ -85,7 +85,7 @@ def get_store_info(list_of_places):
         detail_url = f'{details_base}{data["place_id"]}&fields={fields}&key={key}'
         detail_response = requests.request(
             "GET", detail_url, headers=headers, data=payload)
-
+        print(detail_response.json())
         detail_json = detail_response.json()["result"]
 
         data.update(detail_json)
