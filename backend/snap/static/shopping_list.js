@@ -53,7 +53,4 @@ let sendList = () => {
       $.ajax(settings).done(function (response) {
         console.log(response);
       });
-
-
-    // $.post(address, data, (stuff, status) => {alert("Data: " + stuff + "\nStatus: " + status);}, "json");
 }
