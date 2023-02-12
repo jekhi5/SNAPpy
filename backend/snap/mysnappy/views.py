@@ -28,7 +28,6 @@ def map(request):
     elif request.method == "POST":
         result = location_pipeline(
             request.POST["address"], request.POST["radius"])
-        print(result)
         return HttpResponse(result)
 
 
@@ -83,6 +82,8 @@ def shoppinglist(request):
 # 2. Filter those results to only include supermarkets that are known to accept SNAP
 # 3. Request Google Maps to give us accessibility and pricing information for the remaining grocery stores
 # NOTE: The user will pass in a radius in miles, however, we want to convert this to meters per the API
+
+
 def location_pipeline(user_address, radius_string):
 
     try:

@@ -1,13 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
 
-    </head>
-    <body>
-        <h1>Landing Page</h1>
-            <a href="{% url 'map' %}"> Map</a>
-            <br>
-            <a href="{% url 'shoppinglist' %}"> Shopping List</a>
-            <br>
-    </body>
+</head>
+<body>
+<h1>Landing Page</h1>
+<a href="{% url 'map' %}"> Map</a>
+<br>
+<a href="{% url 'shoppinglist' %}"> Shopping List</a>
+<br>
+<!-- Add this div to top!-->
+<div id="topnav-container">
+    <ul id="topnav">
+        <li class="nav-item"><a href="{% url 'landing' %}">Home</a></li>
+        <li class="nav-item"><a href="{% url 'map' %}">Locate Groceries</a></li>
+        <li class="nav-item"><a href="{% url 'shoppinglist' %}">Find Recipies</a></li>
+    </ul>
+</div>
+
+<div class="content-box">
+    <p>
+        Welcome to SNAPpy - the one-stop solution for individuals in food deserts who rely on the Supplemental Nutrition
+        Assistance Program (SNAP). This innovative website/web-service is designed to provide all the necessary
+        information and resources needed to make grocery shopping a breeze.
+
+        Our grocery retailer locator is a game-changer for SNAP beneficiaries. It not only helps you find food stamp
+        accepted stores near you but also provides crucial information about their accessibility and handicap
+        facilities. No more struggling to navigate unfamiliar neighborhoods and stores.
+
+        Moreover, SNAPpy's grocery list feature is a real lifesaver. Simply input your shopping list, and our app will
+        come up with delicious and healthy recipes that can be made with the ingredients you already have. No more
+        worrying about what to cook or eating unhealthy meals because of limited resources.
+
+        At SNAPpy, our mission is to support and empower individuals in food deserts. We understand the challenges faced
+        by these communities and are committed to providing them with the tools and resources they need to live healthy
+        and fulfilling lives. Join us today and take control of your food choices and well-being!
+<!--        -->
+<!--        "Introducing SNAPpy - The Ultimate Solution for Supplemental Nutrition Assistance Program (SNAP) Participants!-->
+<!--        Say goodbye to the hassle of finding grocery stores that accept food stamps. With SNAPpy, you can easily locate-->
+<!--        nearby grocery retailers that accept SNAP benefits with just a few clicks. Our app also provides you with-->
+<!--        important accessibility information, such as whether the store has a ramp or an elevator, so you can make-->
+<!--        informed decisions about where to shop.-->
+
+
+<!--        SNAPpy is more than just a grocery locator. Our app is also your personal meal planning assistant. Simply input-->
+<!--        your grocery list, and SNAPpy will suggest delicious and nutritious recipes based on the items you have on-->
+<!--        hand to help you make the most of your SNAP benefits. No more wasting time searching for recipe ideas online-->
+<!--        or throwing away food that has gone bad. With SNAPpy, you can make the most of your SNAP benefits and create-->
+<!--        delicious meals for you and your family. Whether you're a seasoned cook or just starting out, SNAPpy has got-->
+<!--        you covered.-->
+    </p>
+
+</div>
+
+<h1>Find new recipes based on your shopping list</h1>
+
+
+</body>
 </html>
