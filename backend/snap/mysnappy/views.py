@@ -1,4 +1,3 @@
-import re
 import geocoder
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -28,14 +27,13 @@ def map(request):
     elif request.method == "POST":
         result = location_pipeline(
             request.POST["address"], request.POST["radius"])
-        return HttpResponse(result)
+        return JsonResponse(result)
 
 
 # endpoints for Shopping List to recipe.
 def shoppinglist(request):
     # GET: serve the page
     if request.method == "GET":
-        # print("GET")
         return render(request, "shoppinglist.html")
 
     # POST: take in the shopping list. Query the recipe api for recipes.
@@ -49,33 +47,26 @@ def shoppinglist(request):
         ing3 = choice(sl)
 
         e = Edamam(
-            recipes_appid= os.getenv('RECIPE_ID'),
+            recipes_appid=os.getenv('RECIPE_ID'),
             recipes_appkey=os.getenv('RECIPE_KEY'),
         )
 
-        
         result = e.search_recipe(ing1 + ' ' + ing2 + ' ' + ing3)
 
         if result['count'] > 0:
             out = choice(result['hits'])
 
-            
             data = {
-                'hits'  : result['count'],
-                'title' : out['recipe']['label'],
-                'url'   : out['recipe']['url']
+                'hits': result['count'],
+                'title': out['recipe']['label'],
+                'url': out['recipe']['url']
             }
 
             return JsonResponse(data)
 
         else:
-            out = {'hits' : 0}
+            out = {'hits': 0}
             return JsonResponse(out)
-
-        
-
-
-
 
 
 # Process the user given zipcode and radius through the following pipeline:
@@ -93,9 +84,9 @@ def location_pipeline(user_address, radius_string):
         float(radius_string)
     except ValueError:
         # HANDLE ERROR
-        return json.dumps({"results": []})
+        return {"results": []}
 
-    radius = int(radius_string) * 1609.344
+    radius = float(radius_string) * 1609.344
 
     # The request for the coordinates
     g = geocoder.google(user_address, key=os.getenv('GOOGLE_KEY'))
@@ -105,26 +96,13 @@ def location_pipeline(user_address, radius_string):
 
     if (coords == None):
         # HANDLE ERROR
-        return json.dumps({"results": []})
+        return {"results": []}
 
     lat = coords[0]
     lng = coords[1]
 
-    print("Address: ", user_address)
-    print("Radius: ", radius_string)
-    print("Coords: (", lat, ", ", lng, ")")
-    print()
-
     list_of_supermarkets = get_supermarkets_in_area(lat, lng, radius)
-
-    print("Initial list (count = ", len(list_of_supermarkets), "): ")
-    for store in list_of_supermarkets:
-        for key in store:
-            print(key, " : ", store[key])
-        print()
-
-    print("--------------------")
 
     filtered_list = get_snap_stores(list_of_supermarkets)
 
-    return json.dumps({"results": get_store_info(filtered_list)})
+    return {"results": get_store_info(filtered_list)}

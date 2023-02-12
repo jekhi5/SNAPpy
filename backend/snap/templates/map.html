@@ -13,19 +13,19 @@
     </head>
     
     <body>
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address"><br><br>
-        <label for="radius">Radius (miles):</label>
-        <input type="number" id="radius" name="radius"><br><br>
-        <input type="submit" value="Submit" onclick="sendLocation()">
+        <label for="address" id="address_label">Address:</label>
+        <input type="text" id="address" name="address" value="500 Parker St., Boston, MA"><br><br>
+        <label for="radius" id="radius_label">Radius (miles):</label>
+        <input type="number" id="radius" name="radius" value="1"><br><br>
+        <input type="submit" value="Submit" id="submit" onclick="sendLocation()">
 
         <div id="results">
             <div id="map">
 
             </div>
 
-            <div id="list">
-                
+            <div id="supermarket_list">
+
             </div>
         </div>
     </body>
