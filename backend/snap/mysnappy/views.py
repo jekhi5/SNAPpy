@@ -1,8 +1,8 @@
-from decouple import config
+import re
 import geocoder
 from django.http import HttpResponse
 from django.shortcuts import render
-import store_locating_pipeline
+from store_locating_pipeline import *
 import os
 from dotenv import load_dotenv, find_dotenv
 
@@ -47,8 +47,13 @@ def shoppinglist(request):
 # 3. Request Google Maps to give us accessibility and pricing information for the remaining grocery stores
 # NOTE: The user will pass in a radius in miles, however, we want to convert this to meters per the API
 def location_pipeline(user_address, radius_string):
-    assert (str.isdigit(radius_string))
-    radius = int(radius) * 1609.344
+    try:
+        float(radius_string)
+    except:
+        # HANDLE ERROR
+        exit(1)
+
+    radius = int(radius_string) * 1609.344
 
     # The request for the coordinates
     g = geocoder.google(user_address, key=os.getenv('GOOGLE_KEY'))
@@ -68,7 +73,7 @@ def location_pipeline(user_address, radius_string):
     print("Coords: (", lat, ", ", lng, ")")
     print()
 
-    list_of_supermarkets = get_superparkets_in_area(lat, lng, radius)
+    list_of_supermarkets = get_supermarkets_in_area(lat, lng, radius)
 
     print("Initial list (count = ", len(list_of_supermarkets), "): ")
     for store in list_of_supermarkets:
@@ -99,4 +104,4 @@ def location_pipeline(user_address, radius_string):
     print("--------------------")
 
 
-location_pipeline("1733 W. School St.", 0.5)
+location_pipeline("500 Parker St.", 2)
