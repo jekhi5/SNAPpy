@@ -26,7 +26,8 @@ def get_supermarkets_in_area(lat, lng, radius):
     return list(map(lambda response: {
         "name": response["name"],
         "place_id": response["place_id"],
-        "vicinity": response["vicinity"]
+        "vicinity": response["vicinity"],
+        "latlng": (response["geometry"]["location"]["lat"], response["geometry"]["location"]["lng"])
     }, nearby_json_list))
 
 # Perform a version of map-reduce on the given list of stores and return a list only
@@ -37,7 +38,8 @@ def get_snap_stores(nearby_response):
     if len(nearby_response) == 0:
         return nearby_response
 
-    snap_stores = pd.read_csv('/home/emery/hack-beanpot/SNAPpy/backend/snap/mysnappy/SNAP_Store_Locations.csv')
+    snap_stores = pd.read_csv(
+        '/Users/jacobkline/SNAPpy/backend/snap/mysnappy/SNAP_Store_Locations.csv')
 
     # Transforms input into dataframe
     nearby_response = pd.json_normalize(nearby_response)
