@@ -1,10 +1,10 @@
 // sends the current shopping list 
 let sendLocation = () => {
     // disable the button until the list is altered.
-    document.getElementById('submit').onclick = "";
-
-    const address = document.getElementById("address");
-    const radius = document.getElementById("radius");
+    // document.getElementById('submit').onclick = "";
+    console.log("SEND LOCATION");
+    const address = document.getElementById("address").value;
+    const radius = document.getElementById("radius").value;
     
 
     var settings = {
@@ -15,15 +15,14 @@ let sendLocation = () => {
             "Content-Type": "application/x-www-form-urlencoded"
         },
         "data": {
-            "zipcode": JSON.stringify(address),
+            "address": JSON.stringify(address),
             "radius": JSON.stringify(radius)
         }
     };
 
-
       
     $.ajax(settings).done(function (response) {
         // IN THE FUTURE, CLEAR HTML AND DISPLAY THE INFORMATION ON PAGE
-        console.log(response);
+        
     });
 }

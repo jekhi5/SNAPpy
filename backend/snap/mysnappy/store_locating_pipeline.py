@@ -37,7 +37,8 @@ def get_snap_stores(nearby_response):
     if len(nearby_response) == 0:
         return nearby_response
 
-    snap_stores = pd.read_csv('SNAP_Store_Locations.csv')
+    snap_stores = pd.read_csv(
+        "/Users/jacobkline/SNAPpy/backend/snap/mysnappy/SNAP_Store_Locations.csv")
 
     # Transforms input into dataframe
     nearby_response = pd.json_normalize(nearby_response)
