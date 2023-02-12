@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>
-      SNAPpy
+      SNAPpy - The SNAP Hub 
     </title>
     <style>
         body {
@@ -16,23 +16,28 @@
           margin: auto;
         }
     </style>
+    <link rel="stylesheet" href="{% static 'global_style.css' %}" type="text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script id="list-operations"> 
-      
-      
-    </script>
   </head>
 
   <body>
+    <div id="topnav-container">
+        <ul id="topnav">
+            <li class="nav-item"><a href="{% url 'landing' %}">Home</a></li>
+            <li class="nav-item"><a href="{% url 'map' %}">Locate Groceries</a></li>
+            <li class="nav-item"><a href="{% url 'shoppinglist' %}">Find Recipies</a></li>
+        </ul>
+    </div>
+
+
     <h1>Welcome to SNAPpy</h1>
-    <br>
-    <br>
-    <a href="{% url 'landing' %}"> Landing</a>
-    <br>
-    <a href="{% url 'map' %}"> Map</a>
-    <br>
 
     <h3>Instructions</h3>
+    <br>
+    <div class="content-box">
+        <p> Write down your shopping list, one item at a time. We will try to generate some recipes you can make with just those ingredients, or possibly a few more. </p>
+        <p> These recipes are intended to be quick, inexpensive, and easy to prepare. Good food doesn't need expensive ingredients and hours of labor. So come out of your comfort zone and cook a meal! </p>
+    </div>
     <br>
     <h3>Input Shopping List</h3>
     <br>
