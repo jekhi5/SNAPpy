@@ -22,4 +22,4 @@ We are hoping to include the following features in the future:
 - Andrew Caplan [*GitHub*](https://github.com/andrewcaplan1)
 - Emery Jacobowitz [*GitHub*](https://github.com/ThePineappleW)
 - Daniel Ostapenko [*GitHub*](https://github.com/Danieltapenko)
-- Jacob Kline [*GitHub*](https://github.com/jekhi5)
+- Jacob Kline [*GitHub*](https://github.com/jekhi5) [*LinkedIn*](https://linkedin.com/in/jacob-e-kline)
