@@ -19,7 +19,7 @@ We are hoping to include the following features in the future:
 
 
 ## Contributors: 
-- Andrew Caplan [*GitHub*](https://github.com/andrewcaplan1)
+- Andrew Caplan [*GitHub*](https://github.com/andrewcaplan1) [*LinkedIn*](https://linkedin.com/in/andrewecaplan/)
 - Emery Jacobowitz [*GitHub*](https://github.com/ThePineappleW)
 - Daniel Ostapenko [*GitHub*](https://github.com/Danieltapenko)
 - Jacob Kline [*GitHub*](https://github.com/jekhi5) [*LinkedIn*](https://linkedin.com/in/jacob-e-kline)
